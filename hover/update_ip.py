@@ -1,13 +1,11 @@
 import requests
 import json
 import ipaddress
+import os
 
-with open('config.json', 'r') as fp:
-    config = json.load(fp)
-
-username = config['username']
-password = config['password']
-dns_id = config['dns_id']
+username = os.environ['HOVER_USERNAME']
+password = os.environ['HOVER_PASSWORD']
+dns_id = os.environ['HOVER_DNS_ID']
 
 
 class HoverException(Exception):

@@ -1,0 +1,1 @@
+00 12	* * *	root    python /app/hover/hover.py
