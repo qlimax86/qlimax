@@ -1,1 +1,1 @@
-00 12	* * *	root    python /app/hover/hover.py
+* *	* * *	root    python /app/hover/update_ip.py >> /var/log/cron.log 2>&1

@@ -2,11 +2,9 @@ version: "3"
 services:
   hover:
     build: hover
-    volumes:
-      - ./hover:/app/hover
     environment:
       - HOVER_USERNAME
-      - HOVER_PASSWROD
+      - HOVER_PASSWORD
       - HOVER_DNS_ID
 
 
