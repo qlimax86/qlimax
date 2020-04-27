@@ -1,0 +1,13 @@
+FROM python:3-stretch as builder
+RUN apt-get update && apt-get -y install cron
+
+FROM builder as hover_build
+COPY . /app/hover
+COPY cronjobs /etc/cron.d/
+RUN chmod 0644 /etc/cron.d/cronjobs
+RUN chmod 0744 /app/hover/start.sh
+RUN touch /var/log/cron.log
+RUN pip3 install -r /app/hover/requirements.txt
+
+ENTRYPOINT bash
+CMD /app/hover/start.sh

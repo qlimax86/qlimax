@@ -1,3 +1,5 @@
+import traceback
+
 import requests
 import json
 import ipaddress
@@ -6,6 +8,8 @@ import os
 username = os.environ['HOVER_USERNAME']
 password = os.environ['HOVER_PASSWORD']
 dns_id = os.environ['HOVER_DNS_ID']
+
+requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'
 
 
 class HoverException(Exception):
@@ -21,7 +25,7 @@ class HoverAPI:
         r = self.session.post("https://www.hover.com/signin/auth.json", json={
             'username': username,
             'password': password
-        })
+        }, headers={'User-Agent': 'requests-qlimax'})
         r.raise_for_status()
 
         if not r.cookies.get('hoverauth'):
@@ -44,7 +48,10 @@ class HoverAPI:
                         hover_data = response.json()
                         if not hover_data.get('succeeded'):
                             raise HoverException('response not succeeded')
-                return
+                        print('ip updated, new ip: {}'.format(current_ip))
+                    else:
+                        print('ip not updated, current_ip: {}'.format(current_ip))
+                    return
 
 
 def get_public_ip():
