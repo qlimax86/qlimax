@@ -9,8 +9,3 @@ services:
       - HOVER_USERNAME
       - HOVER_PASSWORD
       - HOVER_DNS_ID
-
-
-
-
-
