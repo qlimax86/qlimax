@@ -1,14 +1,15 @@
 version: "3"
 services:
   hover:
-    build: hover
+    build:
+      context: hover
+      args:
+        ARCH: 'amd64:-rpi'
     environment:
       - HOVER_USERNAME
       - HOVER_PASSWORD
       - HOVER_DNS_ID
-      - ARCH
-    entrypoint: bash
-    command: /app/hover/start.sh
+
 
 
 
