@@ -4,7 +4,7 @@ services:
     build:
       context: hover
       args:
-        ARCH: ${ARCH}
+        ARCH: ${ARCH-rpi}
     environment:
       - HOVER_USERNAME
       - HOVER_PASSWORD
